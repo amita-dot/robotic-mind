@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotic-Mind - AI Emotional Companion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 Robotic-Mind</h1>
+                <p>Your AI Companion for Emotional Support & Idea Development</p>
+            </div>
+            <div class="header-actions">
+                <button id="settingsBtn" class="btn btn-secondary">⚙️ Settings</button>
+                <button id="logoutBtn" class="btn btn-secondary">🚪 Logout</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar - Conversation History -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Conversations</h3>
+                    <button id="newChatBtn" class="btn btn-primary btn-small">+ New Chat</button>
+                </div>
+                <div class="conversation-list" id="conversationList">
+                    <!-- Conversations will be loaded here -->
+                    <div class="conversation-item active">
+                        <span>Today's Chat</span>
+                        <small>Just now</small>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Chat Area -->
+            <main class="chat-container">
+                <!-- Chat Messages -->
+                <div class="messages-area" id="messagesArea">
+                    <div class="message-welcome">
+                        <h2>Welcome! 👋</h2>
+                        <p>I'm here to listen, support you, and help develop your ideas.</p>
+                        <p>Tell me about your day, how you're feeling, or an idea you'd like to explore!</p>
+                    </div>
+                </div>
+
+                <!-- Emotion Indicator -->
+                <div class="emotion-indicator">
+                    <div class="emotion-badge" id="emotionBadge">
+                        <span>Emotion: </span>
+                        <strong id="detectedEmotion">—</strong>
+                    </div>
+                    <div class="emotion-confidence" id="confidenceBar">
+                        <div class="confidence-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <form id="messageForm" class="message-form">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Share your thoughts, feelings, or ideas... (Press Ctrl+Enter to send)"
+                            rows="3"
+                        ></textarea>
+                        <button type="submit" class="btn btn-primary">Send 📤</button>
+                    </form>
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="addQuickMessage('How can I improve my ideas?')">💡 Ideas</button>
+                        <button class="quick-btn" onclick="addQuickMessage('I need someone to talk to')">💬 Talk</button>
+                        <button class="quick-btn" onclick="addQuickMessage('Show me summary')">📊 Summary</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Stats -->
+            <aside class="stats-sidebar">
+                <div class="stats-header">
+                    <h3>Session Stats</h3>
+                </div>
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <span class="stat-label">Messages</span>
+                        <span class="stat-value" id="messageCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Duration</span>
+                        <span class="stat-value" id="duration">0s</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Dominant Emotion</span>
+                        <span class="stat-value" id="dominantEmotion">—</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Confidence</span>
+                        <span class="stat-value" id="avgConfidence">0%</span>
+                    </div>
+                </div>
+                <div class="emotion-chart">
+                    <h4>Emotions</h4>
+                    <div id="emotionChart" class="chart">
+                        <!-- Emotion distribution will be displayed here -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" onclick="closeSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="languageSelect">Language:</label>
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="themeSelect">Theme:</label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="notificationToggle">
+                        <input type="checkbox" id="notificationToggle" checked>
+                        Enable Notifications
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
